@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gain Skills</title>
-        <style>
-          * {
+    <style>
+        * {
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
@@ -69,9 +69,58 @@ button {
     cursor: pointer;
 }
 
-button
+button:hover {
+    background-color: #0056b3;
+}
 
-        </style>
+.resources {
+    margin-top: 15px;
+}
+
+.resources h4 {
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.resources ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.resources ul li {
+    margin-bottom: 5px;
+}
+
+.resources ul li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.resources ul li a:hover {
+    text-decoration: underline;
+}
+
+#my-skills {
+    margin-top: 40px;
+}
+
+#my-skills h2 {
+    color: #007bff;
+}
+
+#my-skills ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#my-skills ul li {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+    </style>
 </head>
 <body>
     <div class="container">
@@ -86,30 +135,60 @@ button
                 <h3>HTML</h3>
                 <p>Learn the basics of web development by mastering HTML.</p>
                 <button onclick="addSkill('HTML')">Add to My Skills</button>
+                
+                <!-- Educational Resources -->
+                <div class="resources">
+                    <h4>Recommended Books:</h4>
+                    <ul>
+                        <li><a href="https://example.com/html-book" target="_blank">HTML & CSS: Design and Build Websites</a></li>
+                        <li><a href="https://example.com/html-guide" target="_blank">Learning Web Design: A Beginner's Guide</a></li>
+                    </ul>
+                    <h4>Recommended Videos:</h4>
+                    <ul>
+                        <li><a href="https://youtube.com/html-tutorial" target="_blank">HTML Full Course for Beginners</a></li>
+                        <li><a href="https://youtube.com/html-intro" target="_blank">HTML Crash Course</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div class="skill-card">
                 <h3>CSS</h3>
                 <p>Style and layout your websites by understanding CSS fundamentals.</p>
                 <button onclick="addSkill('CSS')">Add to My Skills</button>
+                
+                <!-- Educational Resources -->
+                <div class="resources">
+                    <h4>Recommended Books:</h4>
+                    <ul>
+                        <li><a href="https://example.com/css-book" target="_blank">CSS: The Definitive Guide</a></li>
+                        <li><a href="https://example.com/css-mastery" target="_blank">CSS Mastery: Advanced Web Standards Solutions</a></li>
+                    </ul>
+                    <h4>Recommended Videos:</h4>
+                    <ul>
+                        <li><a href="https://youtube.com/css-tutorial" target="_blank">CSS Full Course for Beginners</a></li>
+                        <li><a href="https://youtube.com/css-crash-course" target="_blank">CSS Crash Course</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div class="skill-card">
                 <h3>JavaScript</h3>
                 <p>Enhance your web pages by adding dynamic content with JavaScript.</p>
                 <button onclick="addSkill('JavaScript')">Add to My Skills</button>
-            </div>
-
-            <div class="skill-card">
-                <h3>Python</h3>
-                <p>Start your journey into programming and data analysis with Python.</p>
-                <button onclick="addSkill('Python')">Add to My Skills</button>
-            </div>
-
-            <div class="skill-card">
-                <h3>Data Analysis</h3>
-                <p>Learn how to analyze and visualize data to gain insights.</p>
-                <button onclick="addSkill('Data Analysis')">Add to My Skills</button>
+                
+                <!-- Educational Resources -->
+                <div class="resources">
+                    <h4>Recommended Books:</h4>
+                    <ul>
+                        <li><a href="https://example.com/js-book" target="_blank">JavaScript: The Good Parts</a></li>
+                        <li><a href="https://example.com/js-definitive" target="_blank">JavaScript: The Definitive Guide</a></li>
+                    </ul>
+                    <h4>Recommended Videos:</h4>
+                    <ul>
+                        <li><a href="https://youtube.com/js-tutorial" target="_blank">JavaScript Full Course for Beginners</a></li>
+                        <li><a href="https://youtube.com/js-crash-course" target="_blank">JavaScript Crash Course</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -121,7 +200,7 @@ button
     </div>
 
     <script>
-      // Function to filter skills based on user input in the search bar
+        // Function to filter skills based on user input in the search bar
 function filterSkills() {
     const searchInput = document.getElementById('search-bar').value.toLowerCase();
     const skillCards = document.querySelectorAll('.skill-card');
