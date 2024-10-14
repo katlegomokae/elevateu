@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Job Matching</title>
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#job-matches {
+    margin-top: 30px;
+}
+
+#job-matches h2 {
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.job-card {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job-card h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.job-card p {
+    margin-bottom: 5px;
+}
+
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Job Matching</h1>
+
+        <!-- User Profile Form -->
+        <form id="user-profile-form">
+            <h2>Enter Your Profile</h2>
+
+            <label for="skills">Your Skills (comma separated):</label>
+            <input type="text" id="skills" name="skills" required>
+
+            <label for="experience">Past Job Titles (comma separated):</label>
+            <input type="text" id="experience" name="experience" required>
+
+            <button type="button" onclick="matchJobs()">Find Jobs</button>
+        </form>
+
+        <!-- Matched Jobs Section -->
+        <div id="job-matches">
+            <h2>Recommended Jobs for You:</h2>
+            <div id="job-list"></div>
+        </div>
+    </div>
+
+    <script>
+      // Sample job database
+const jobDatabase = [
+    {
+        title: 'Frontend Developer',
+        company: 'Tech Innovators',
+        skills: ['HTML', 'CSS', 'JavaScript', 'React'],
+        experience: ['Web Developer', 'Software Engineer'],
+        location: 'Remote',
+        salary: '$70,000 - $90,000'
+    },
+    {
+        title: 'Marketing Specialist',
+        company: 'Creative Minds',
+        skills: ['SEO', 'Content Marketing', 'Google Analytics', 'Social Media'],
+        experience: ['Marketing Coordinator', 'Social Media Manager'],
+        location: 'New York, NY',
+        salary: '$50,000 - $65,000'
+    },
+    {
+        title: 'Data Analyst',
+        company: 'Data Corp',
+        skills: ['SQL', 'Python', 'Excel', 'Data Visualization'],
+        experience: ['Business Analyst', 'Data Scientist'],
+        location: 'San Francisco, CA',
+        salary: '$85,000 - $100,000'
+    },
+    {
+        title: 'Graphic Designer',
+        company: 'Creative Studio',
+        skills: ['Photoshop', 'Illustrator', 'InDesign', 'Creativity'],
+        experience: ['Graphic Designer', 'Visual Designer'],
+        location: 'Los Angeles, CA',
+        salary: '$55,000 - $75,000'
+    }
+];
+
+// Function to match jobs based on user's skills and experience
+function matchJobs() {
+    const userSkills = document.getElementById('skills').value.split(',').map(skill => skill.trim().toLowerCase());
+    const userExperience = document.getElementById('experience').value.split(',').map(exp => exp.trim().toLowerCase());
+
+    const matchedJobs = jobDatabase.filter(job => {
+        const matchingSkills = job.skills.some(skill => userSkills.includes(skill.toLowerCase()));
+        const matchingExperience = job.experience.some(exp => userExperience.includes(exp.toLowerCase()));
+        return matchingSkills && matchingExperience;
+    });
+
+    displayMatchedJobs(matchedJobs);
+}
+
+// Function to display the matched jobs
+function displayMatchedJobs(jobs) {
+    const jobList = document.getElementById('job-list');
+    jobList.innerHTML = '';
+
+    if (jobs.length === 0) {
+        jobList.innerHTML = '<p>No matching jobs found based on your profile.</p>';
+        return;
+    }
+
+    jobs.forEach(job => {
+        const jobCard = document.createElement('div');
+        jobCard.classList.add('job-card');
+
+        jobCard.innerHTML = `
+            <h3>${job.title}</h3>
+            <p>Company: ${job.company}</p>
+            <p>Location: ${job.location}</p>
+            <p>Salary: ${job.salary}</p>
+        `;
+
+        jobList.appendChild(jobCard);
+    });
+}
+
+    </script>
+</body>
+</html>
