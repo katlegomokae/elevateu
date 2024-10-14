@@ -28,7 +28,33 @@
             </nav>
         </div>
     </header>
+   <div class="container">
+        <h1>Welcome to the Freelancer Skills Enhancement Platform</h1>
+        <p>Enhance your skills through engaging games!</p>
+        
+        <!-- Button to open the game info modal -->
+        <button id="open-modal-btn">Learn About Games</button>
 
+        <!-- Game Info Modal -->
+        <div id="game-info-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeGameInfoModal()">&times;</span>
+                <h2>Enhance Your Skills with Games</h2>
+                <p>Play interactive games to enhance your skills in various areas!</p>
+                <p>Each game is designed to be both fun and educational, helping you gain points that can be added to your resume.</p>
+                <ul>
+                    <li><strong>HTML Game:</strong> Test your knowledge with HTML quizzes.</li>
+                    <li><strong>CSS Game:</strong> Complete challenges to master CSS.</li>
+                    <li><strong>JavaScript Game:</strong> Sharpen your programming skills with JavaScript questions.</li>
+                    <li><strong>Python Game:</strong> Improve your Python coding with fun quizzes.</li>
+                </ul>
+                <button onclick="startGame('html')">Play HTML Game</button>
+                <button onclick="startGame('css')">Play CSS Game</button>
+                <button onclick="startGame('js')">Play JavaScript Game</button>
+                <button onclick="startGame('python')">Play Python Game</button>
+            </div>
+        </div>
+    </div>
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
