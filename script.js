@@ -82,3 +82,12 @@ function generateExperienceSuggestions(jobTitle) {
 
     return experienceMap[jobTitle] || ['No specific suggestions available for this job title.'];
 }
+// Open the game info modal
+document.getElementById("open-modal-btn").onclick = function() {
+    document.getElementById("game-info-modal").style.display = "flex";
+}
+
+// Close the game info modal
+function closeGameInfoModal() {
+    document.getElementById("game-info-modal").style.display = "none";
+}
