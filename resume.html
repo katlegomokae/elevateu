@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Resume Builder</h1>
+        <form id="resume-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="jobTitle">Job Title:</label>
+            <input type="text" id="jobTitle" name="jobTitle" required>
+
+            <label for="summary">Professional Summary:</label>
+            <textarea id="summary" name="summary" rows="4"></textarea>
+
+            <label for="skills">Skills (comma separated):</label>
+            <input type="text" id="skills" name="skills" required>
+
+            <label for="experience">Work Experience:</label>
+            <textarea id="experience" name="experience" rows="6"></textarea>
+
+            <label for="education">Education:</label>
+            <textarea id="education" name="education" rows="4"></textarea>
+
+            <button type="button" onclick="generateResume()">Build Resume</button>
+        </form>
+
+        <div id="resume-output">
+            <!-- Generated Resume will appear here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
