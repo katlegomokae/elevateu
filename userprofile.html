@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.profile-container {
+    width: 70%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+button.submit-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.submit-btn:hover {
+    background-color: #218838;
+}
+
+.job-matching {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+#jobList {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+</style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>User Profile</h1>
+
+        <form id="userProfileForm" class="profile-form" enctype="multipart/form-data">
+            <!-- Personal Information -->
+            <div class="section">
+                <h2>Personal Details</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself"></textarea>
+            </div>
+
+            <!-- Portfolio Upload -->
+            <div class="section">
+                <h2>Portfolio Upload</h2>
+                <label for="portfolio">Upload your portfolio (PDF or Zip):</label>
+                <input type="file" id="portfolio" name="portfolio" accept=".pdf,.zip" required>
+
+                <label for="projects">Demo Projects (Add links to demo projects):</label>
+                <textarea id="projects" name="projects" rows="4" placeholder="e.g., https://github.com/username/project1"></textarea>
+            </div>
+
+            <!-- Achievements -->
+            <div class="section">
+                <h2>Achievements</h2>
+                <label for="achievements">List of Achievements:</label>
+                <textarea id="achievements" name="achievements" rows="3" placeholder="e.g., Completed certification in web development"></textarea>
+            </div>
+
+            <!-- Endorsements -->
+            <div class="section">
+                <h2>Client Testimonials / Endorsements</h2>
+                <label for="endorsements">Testimonials from clients:</label>
+                <textarea id="endorsements" name="endorsements" rows="4" placeholder="Copy-paste testimonials here"></textarea>
+            </div>
+
+            <!-- Skills and AI Matching -->
+            <div class="section">
+                <h2>Your Skills</h2>
+                <label for="skills">Skills (Separate with commas):</label>
+                <input type="text" id="skills" name="skills" placeholder="e.g., HTML, CSS, JavaScript, React">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit Profile</button>
+        </form>
+
+        <!-- AI Job Matching Section -->
+        <div class="job-matching" id="jobMatching">
+            <h2>Job Matching for You</h2>
+            <div id="jobList"></div>
+        </div>
+    </div>
+
+    <script>
+      // Simulate AI Job Matching
+const jobList = document.getElementById('jobList');
+
+document.getElementById('userProfileForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Extracting the user's skills input
+    const skillsInput = document.getElementById('skills').value;
+    const userSkills = skillsInput.split(',').map(skill => skill.trim().toLowerCase());
+
+    // Dummy jobs with skills required
+    const jobs = [
+        { title: 'Frontend Developer', skills: ['html', 'css', 'javascript', 'react'] },
+        { title: 'Backend Developer', skills: ['node.js', 'express', 'mongodb'] },
+        { title: 'Full Stack Developer', skills: ['html', 'css', 'javascript', 'node.js'] },
+        { title: 'Mobile App Developer', skills: ['react native', 'ios', 'android'] }
+    ];
+
+    // Clear the job list before updating
+    jobList.innerHTML = '';
+
+    // Find matching jobs based on skills
+    const matchingJobs = jobs.filter(job =>
+        job.skills.some(skill => userSkills.includes(skill))
+    );
+
+    if (matchingJobs.length === 0) {
+        jobList.innerHTML = '<p>No matching jobs found.</p>';
+    } else {
+        matchingJobs.forEach(job => {
+            const jobElement = document.createElement('p');
+            jobElement.textContent = `Job Title: ${job.title}`;
+            jobList.appendChild(jobElement);
+        });
+    }
+});
+
+    </script>
+</body>
+</html>
