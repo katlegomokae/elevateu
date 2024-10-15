@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Demo Platform</title>
     <style>
-      body {
+        body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
@@ -49,82 +49,18 @@ h1 {
     color: #007BFF;
 }
 
-.project button {
+.start-project-btn {
     background-color: #007BFF;
     color: white;
-    border: none;
+    text-decoration: none;
     padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    display: inline-block;
     margin-top: 10px;
 }
 
-.project button:hover {
+.start-project-btn:hover {
     background-color: #0056b3;
-}
-
-.upload-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.upload-form input, .upload-form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.upload-form button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.upload-form button:hover {
-    background-color: #218838;
-}
-
-#portfolioList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: space-around;
-}
-
-.portfolio-item {
-    background-color: #fafafa;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 30%;
-}
-
-.rate-review {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.review-box {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    width: 50%;
-    margin: 15px 0;
-    text-align: center;
-}
-
-.review-box input[type="text"] {
-    padding: 8px;
-    margin-bottom: 10px;
-    width: 80%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
     </style>
@@ -141,21 +77,21 @@ h1 {
                     <h3>Build a Portfolio Website</h3>
                     <p>Hard Skill: Web Development</p>
                     <p>Soft Skill: Creativity & Presentation</p>
-                    <button onclick="startProject('Build a Portfolio Website')">Start Project</button>
+                    <a href="project-activities.html?project=portfolio" class="start-project-btn">Start Project</a>
                 </div>
 
                 <div class="project">
                     <h3>Team Collaboration Simulation</h3>
                     <p>Hard Skill: Team Communication</p>
                     <p>Soft Skill: Emotional Intelligence</p>
-                    <button onclick="startProject('Team Collaboration Simulation')">Start Project</button>
+                    <a href="project-activities.html?project=team-collaboration" class="start-project-btn">Start Project</a>
                 </div>
 
                 <div class="project">
                     <h3>Create a Business Pitch</h3>
                     <p>Hard Skill: Public Speaking</p>
                     <p>Soft Skill: Persuasion</p>
-                    <button onclick="startProject('Create a Business Pitch')">Start Project</button>
+                    <a href="project-activities.html?project=business-pitch" class="start-project-btn">Start Project</a>
                 </div>
             </div>
         </section>
@@ -195,13 +131,8 @@ h1 {
     </div>
 
     <script>
-      // Simulating database for uploaded projects
+        // Simulating database for uploaded projects
 const projects = [];
-
-// Start practice project
-function startProject(projectName) {
-    alert(`You have started the project: ${projectName}`);
-}
 
 // Handle form submission for uploading a demo
 document.getElementById('uploadForm').addEventListener('submit', function (e) {
@@ -256,28 +187,7 @@ function displayReviewSection() {
             <button onclick="submitReview(${index})">Submit Review</button>
             <div id="reviews${index}"></div>
         `;
-        reviewSection.appendChild(reviewBox);
-
-        // Display existing reviews
-        const reviewsDiv = document.getElementById(`reviews${index}`);
-        reviewsDiv.innerHTML = '';
-        project.reviews.forEach(review => {
-            const reviewP = document.createElement('p');
-            reviewP.textContent = review;
-            reviewsDiv.appendChild(reviewP);
-        });
-    });
-}
-
-// Submit a review for a project
-function submitReview(projectIndex) {
-    const reviewInput = document.getElementById(`reviewInput${projectIndex}`).value;
-    if (reviewInput) {
-        projects[projectIndex].reviews.push(reviewInput);
-        displayReviewSection();
-        alert('Review submitted successfully!');
-    }
-}
+        reviewSection.appendChild(review
 
     </script>
 </body>
