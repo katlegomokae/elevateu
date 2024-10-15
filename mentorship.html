@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship & Peer Review System</title>
+    <style>
+      /* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container for Main Content */
+.container {
+    max-width: 80%;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #007BFF;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #555;
+    margin-top: 40px;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+label {
+    font-size: 1rem;
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Mentor and Review Buttons */
+.mentor-btn, .request-mentor-btn, .submit-demo-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.mentor-btn:hover, .request-mentor-btn:hover, .submit-demo-btn:hover {
+    background-color: #218838;
+}
+
+/* Mentor List */
+#mentorList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#mentorList li {
+    background-color: #fafafa;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Demo Submission List */
+#demoList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#demoList li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    padding: 20px 10px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar .logo {
+    width: 150px;
+    float: left;
+    margin-right: 20px;
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation bar with logo -->
+    <div class="navbar">
+        <a href="index.html" class="logo"><img src="logo.png" alt="Logo" class="logo"></a>
+        <a href="index.html">Home</a>
+        <a href="mentorship.html">Mentorship</a>
+        <a href="peer-review.html">Peer Review</a>
+        <a href="projects.html">My Projects</a>
+        <a href="profile.html">Profile</a>
+    </div>
+
+    <!-- Mentorship Section -->
+    <div class="container">
+        <h1>Join the Mentorship Program</h1>
+        <p>Are you an experienced freelancer or professional? Help new users navigate their freelancing journey by offering mentorship!</p>
+
+        <button class="mentor-btn" onclick="becomeMentor()">Become a Mentor</button>
+
+        <h2>Looking for a Mentor?</h2>
+        <p>New to freelancing? Connect with an experienced mentor to receive guidance, tips, and feedback on your projects.</p>
+        <button class="request-mentor-btn" onclick="requestMentor()">Request a Mentor</button>
+
+        <h2>Current Mentors Available:</h2>
+        <ul id="mentorList">
+            <!-- Dynamically populated list of mentors -->
+        </ul>
+    </div>
+
+    <!-- Peer Review Section -->
+    <div class="container">
+        <h1>Peer Review System</h1>
+        <p>Submit your project demos and portfolios for review by peers or mentors. Get valuable feedback before tackling real-world projects!</p>
+
+        <!-- Form to submit project demo for peer review -->
+        <form id="submitDemoForm" onsubmit="submitDemo(event)">
+            <label for="demoTitle">Project Title:</label>
+            <input type="text" id="demoTitle" name="demoTitle" required>
+
+            <label for="demoLink">Demo Link (URL):</label>
+            <input type="url" id="demoLink" name="demoLink" required>
+
+            <button type="submit" class="submit-demo-btn">Submit Demo</button>
+        </form>
+
+        <!-- Display peer reviews -->
+        <h2>Submitted Demos for Review:</h2>
+        <ul id="demoList">
+            <!-- Dynamically populated list of demos -->
+        </ul>
+    </div>
+
+    <script>
+      // Mock data for mentors (in a real app, this would be fetched from a server)
+let mentors = [
+    { name: "John Doe", expertise: "Web Development" },
+    { name: "Jane Smith", expertise: "Graphic Design" },
+    { name: "Samuel Green", expertise: "Digital Marketing" }
+];
+
+// Function to dynamically populate mentor list
+function loadMentors() {
+    const mentorList = document.getElementById("mentorList");
+    mentorList.innerHTML = "";
+
+    mentors.forEach(mentor => {
+        const mentorItem = document.createElement("li");
+        mentorItem.textContent = `${mentor.name} - Expertise: ${mentor.expertise}`;
+        mentorList.appendChild(mentorItem);
+    });
+}
+
+// Call loadMentors when the page loads
+window.onload = loadMentors;
+
+// Function to allow a user to become a mentor
+function becomeMentor() {
+    const name = prompt("Enter your name:");
+    const expertise = prompt("Enter your area of expertise:");
+
+    if (name && expertise) {
+        mentors.push({ name, expertise });
+        loadMentors(); // Refresh the mentor list
+        alert("You are now a mentor!");
+    } else {
+        alert("Both name and expertise are required.");
+    }
+}
+
+// Function to request a mentor
+function requestMentor() {
+    alert("A mentor request has been sent! We will connect you with an available mentor soon.");
+}
+
+// Peer Review System: Mock data for demos (in a real app, this would be fetched from a server)
+let demoProjects = [];
+
+// Function to submit a project demo for peer review
+function submitDemo(event) {
+    event.preventDefault(); // Prevent page refresh
+
+    const demoTitle = document.getElementById("demoTitle").value;
+    const demo
+
+    </script>
+</body>
+</html>
