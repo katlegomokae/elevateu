@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freemium Subscription Model</title>
+    /* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container for Main Content */
+.container {
+    max-width: 80%;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #007BFF;
+}
+
+.lead {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.benefits-list li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.subscribe-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.subscribe-btn:hover {
+    background-color: #218838;
+}
+
+/* Gig Counter Section */
+.gig-counter {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.gig-counter h2 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.complete-gig-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.complete-gig-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-size: 2rem;
+    color: #dc3545;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+.subscribe-modal-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.subscribe-modal-btn:hover {
+    background-color: #218838;
+}
+
+/* Close button for modal */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+</head>
+<body>
+
+    <!-- Subscription Section -->
+    <div class="container">
+        <h1>Unlock Your Full Potential with Our Subscription Plan!</h1>
+
+        <p class="lead">Complete up to 5 gigs for free. Want to take it further? Subscribe now to get:</p>
+        <ul class="benefits-list">
+            <li>Full access to the AI-powered Job Matching system, delivering gigs tailored to your skills.</li>
+            <li>Exclusive access to the AI CV Generator – craft a standout resume in minutes!</li>
+            <li>Skill-enhancing demo projects that help you grow both hard and soft skills.</li>
+        </ul>
+
+        <!-- Subscription Button -->
+        <button class="subscribe-btn" onclick="subscribeNow()">Subscribe Now!</button>
+    </div>
+
+    <!-- Gig Counter Notification -->
+    <div class="gig-counter">
+        <h2>Gigs Completed: <span id="gigCount">0</span> / 5</h2>
+        <button class="complete-gig-btn" onclick="completeGig()">Complete a Gig</button>
+    </div>
+
+    <!-- Modal Popup for Subscription Prompt -->
+    <div id="subscriptionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>You've reached the limit!</h2>
+            <p>Subscribe now to unlock unlimited access to gigs, AI tools, and more!</p>
+            <button class="subscribe-modal-btn" onclick="subscribeNow()">Subscribe Now!</button>
+        </div>
+    </div>
+
+    <script>
+      let gigCount = 0;
+const maxGigs = 5;
+const modal = document.getElementById("subscriptionModal");
+const closeModal = document.getElementsByClassName("close")[0];
+
+// Function to complete a gig and check the count
+function completeGig() {
+    gigCount++;
+    document.getElementById('gigCount').textContent = gigCount;
+
+    if (gigCount >= maxGigs) {
+        // Open modal to prompt subscription after 5 gigs
+        modal.style.display = "block";
+    }
+}
+
+// Function to subscribe and redirect to a subscription page
+function subscribeNow() {
+    window.location.href = "subscription.html";
+}
+
+// Close modal when clicking on 'x'
+closeModal.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close modal if the user clicks anywhere outside it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+    </script>
+</body>
+</html>
