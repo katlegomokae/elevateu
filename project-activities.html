@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Activities</title>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.section {
+    margin: 30px 0;
+}
+
+.projects-list {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.project {
+    background-color: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 30%;
+}
+
+.project h3 {
+    color: #007BFF;
+}
+
+.start-project-btn {
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.start-project-btn:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="projectTitle">Project Activities</h1>
+
+        <section id="activity-options" class="section">
+            <h2>Choose an Activity to Start</h2>
+            <div class="activity-list">
+                <div class="activity">
+                    <h3>Activity 1: Create a Basic Layout</h3>
+                    <p>Design and develop a basic webpage layout with HTML and CSS. This will form the foundation for your portfolio or any project.</p>
+                    <button onclick="startActivity('Activity 1')">Start Activity</button>
+                </div>
+
+                <div class="activity">
+                    <h3>Activity 2: Collaborate on a Team Project</h3>
+                    <p>Simulate a team environment by building a web application using Git and collaborating with other users.</p>
+                    <button onclick="startActivity('Activity 2')">Start Activity</button>
+                </div>
+
+                <div class="activity">
+                    <h3>Activity 3: Create a Business Presentation</h3>
+                    <p>Create a presentation for a business pitch using Google Slides or PowerPoint. Focus on your public speaking and persuasion skills.</p>
+                    <button onclick="startActivity('Activity 3')">Start Activity</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="activityFeedback"></div>
+    </div>
+
+    <script>
+        // Get the project name from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectName = urlParams.get('project');
+
+        // Display the project name as the title of the page
+        document.getElementById('projectTitle').textContent = projectName ? projectName + " - Activities" : "Project Activities";
+
+        // Function to handle activity start
+        function startActivity(activityName) {
+            document.getElementById('activityFeedback').innerHTML = `<p>You have started: ${activityName}. Please follow the instructions provided for the activity to complete your mini project.</p>`;
+        }
+    </script>
+</body>
+</html>
