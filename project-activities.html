@@ -4,12 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Activities</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for main content */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Section styling */
+.section {
+    margin: 30px 0;
+}
+
+/* Navigation bar styling */
+.navbar {
+    background-color: #007BFF;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar a:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Logo Styling */
+.logo {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.navbar a.logo {
+    padding: 0;
+}
+
+.navbar-right {
+    float: right;
+}
+
+/* Activity section styling */
+.activity-list {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.activity {
+    background-color: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 30%;
+}
+
+.activity h3 {
+    color: #007BFF;
+}
+
+.activity button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.activity button:hover {
+    background-color: #218838;
+}
+
+/* Feedback message styling */
+#activityFeedback {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+    </style>
 </head>
 <body>
+    <!-- Navigation bar with logo -->
+    <div class="navbar">
+        <a href="index.html" class="logo"><img src="logo.png" alt="Logo" class="logo"></a>
+        <a href="index.html">Home</a>
+        <a href="upload.html">Upload Demo</a>
+        <a href="projects.html">My Projects</a>
+        <a href="contact.html">Contact</a>
+        <div class="navbar-right">
+            <a href="profile.html">Profile</a>
+        </div>
+    </div>
+
+    <!-- Main container -->
     <div class="container">
         <h1 id="projectTitle">Project Activities</h1>
 
+        <!-- Activity Options Section -->
         <section id="activity-options" class="section">
             <h2>Choose an Activity to Start</h2>
             <div class="activity-list">
@@ -33,6 +157,7 @@
             </div>
         </section>
 
+        <!-- Feedback message -->
         <div id="activityFeedback"></div>
     </div>
 
