@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Insights Dashboard</title>
+    <style>
+      /* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+h1 {
+    padding: 20px;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    padding: 20px 10px;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.navbar a.active {
+    background-color: #007BFF;
+    color: white;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar .logo img {
+    width: 150px;
+    float: left;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Overview section */
+.overview {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.overview-card {
+    background-color: #007BFF;
+    color: white;
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.overview-card p {
+    font-size: 2rem;
+}
+
+/* Performance section */
+.performance-section {
+    padding: 20px;
+}
+
+#performanceChart {
+    max-width: 100%;
+    height: 300px;
+}
+
+/* Skills section */
+.skills-section {
+    padding: 20px;
+}
+
+.skills-section ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.skills-section ul li {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 400px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Reviews section */
+.reviews-section {
+    padding: 20px;
+}
+
+.reviews-section div {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 600px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="index.html" class="logo"><img src="logo.png" alt="Logo"></a>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="profile.html">Profile</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+    </div>
+
+    <!-- Dashboard container -->
+    <div class="dashboard-container">
+        <h1>Freelancer Insights Dashboard</h1>
+
+        <!-- Overview section -->
+        <div class="overview">
+            <div class="overview-card">
+                <h2>Gigs Completed</h2>
+                <p id="gigs-completed">Loading...</p>
+            </div>
+            <div class="overview-card">
+                <h2>Average Rating</h2>
+                <p id="average-rating">Loading...</p>
+            </div>
+            <div class="overview-card">
+                <h2>Total Earnings</h2>
+                <p id="total-earnings">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Performance insights section -->
+        <div class="performance-section">
+            <h2>Performance Insights</h2>
+            <canvas id="performanceChart"></canvas>
+        </div>
+
+        <!-- Top Skills Section -->
+        <div class="skills-section">
+            <h2>Top Skills</h2>
+            <ul id="skills-list">
+                <li>Loading...</li>
+            </ul>
+        </div>
+
+        <!-- Recent Reviews Section -->
+        <div class="reviews-section">
+            <h2>Recent Reviews</h2>
+            <div id="reviews-container">Loading...</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Data for dashboard - in a real app, this would be retrieved from a backend server
+const dashboardData = {
+    gigsCompleted: 28,
+    averageRating: 4.5,
+    totalEarnings: 32000,
+    topSkills: ["Web Development", "UI/UX Design", "SEO Optimization", "JavaScript"],
+    reviews: [
+        { client: "John Doe", review: "Great work on the project! Very professional.", rating: 5 },
+        { client: "Jane Smith", review: "Completed the task on time with excellent quality.", rating: 4 },
+        { client: "Mark Brown", review: "Good communication and technical skills.", rating: 5 },
+    ],
+    performance: [4.2, 4.5, 4.7, 4.3, 4.8, 4.6] // performance ratings over time
+};
+
+// Load dashboard data
+window.onload = function() {
+    // Load overview data
+    document.getElementById('gigs-completed').innerText = dashboardData.gigsCompleted;
+    document.getElementById('average-rating').innerText = dashboardData.averageRating;
+    document.getElementById('total-earnings').innerText = "$" + dashboardData.totalEarnings;
+
+    // Load top skills
+    const skillsList = document.getElementById('skills-list');
+    skillsList.innerHTML = ""; // Clear placeholder
+    dashboardData.topSkills.forEach(skill => {
+        let skillItem = document.createElement('li');
+        skillItem.innerText = skill;
+        skillsList.appendChild(skillItem);
+    });
+
+    // Load recent reviews
+    const reviewsContainer = document.getElementById('reviews-container');
+    reviewsContainer.innerHTML = ""; // Clear placeholder
+    dashboardData.reviews.forEach(review => {
+        let reviewCard = document.createElement('div');
+        reviewCard.innerHTML = `<strong>${review.client}</strong>: ${review.review} <br> <em>Rating: ${review.rating}/5</em>`;
+        reviewsContainer.appendChild(reviewCard);
+    });
+
+    // Load performance chart
+    var ctx = document.getElementById('performanceChart').getContext('2d');
+    var performanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Performance Rating',
+                data: dashboardData.performance,
+                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    max: 5
+                }
+            }
+        }
+    });
+}
+
+    </script>
+</body>
+</html>
