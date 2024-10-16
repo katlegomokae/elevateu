@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack Web Development Project</title>
+    <style>
+      /* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    padding: 20px 10px;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar .logo img {
+    width: 150px;
+    float: left;
+}
+
+/* Project Section */
+.project-container {
+    padding: 40px;
+    text-align: center;
+    background-color: white;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Timer Styling */
+.timer-container {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    color: #FF0000;
+}
+
+.instructions {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.instructions h2 {
+    font-size: 1.8rem;
+    color: #007BFF;
+}
+
+.instructions ol {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 20px;
+}
+
+.ide-container {
+    margin-bottom: 40px;
+}
+
+.ide-container h2 {
+    font-size: 1.8rem;
+    color: #007BFF;
+}
+
+.feedback-section {
+    margin-top: 30px;
+}
+
+.feedback-message {
+    font-size: 1.2rem;
+    color: green;
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html" class="logo"><img src="logo.png" alt="Logo"></a>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="projects.html">Project Demos</a>
+        <a href="profile.html">Profile</a>
+        <a href="about.html">About Us</a>
+    </div>
+
+    <!-- Main Project Section -->
+    <section class="project-container">
+        <h1>Full-Stack Web Development Project</h1>
+        <p>Build a functional eCommerce website using HTML, CSS, JavaScript, and Node.js. You have <strong>1 hour and 30 minutes</strong> to complete the project. Get started by following the instructions below and use the integrated IDE to code your solution. Once complete, submit for feedback!</p>
+        
+        <!-- Timer -->
+        <div class="timer-container">
+            <h2>Time Remaining: <span id="time">1:30:00</span></h2>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h2>Project Instructions</h2>
+            <ol>
+                <li>Create a homepage that lists products dynamically using JavaScript.</li>
+                <li>Allow users to add products to a shopping cart.</li>
+                <li>Build a product detail page for each item.</li>
+                <li>Implement a checkout system (without real payment gateway).</li>
+                <li>Store and display user’s purchase history on a profile page.</li>
+                <li>Use Node.js for a simple backend to manage products and users (bonus for using a database).</li>
+            </ol>
+        </div>
+
+        <!-- IDE Section -->
+        <div class="ide-container">
+            <h2>Code Your Solution</h2>
+            <iframe src="https://codesandbox.io/embed/new?codemirror=1&highlights=false" 
+                style="width:100%; height:500px; border:0; border-radius: 8px; overflow:hidden;" 
+                title="Online IDE" 
+                allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+            </iframe>
+        </div>
+
+        <!-- Feedback and Submission -->
+        <div class="feedback-section">
+            <button onclick="submitProject()">Submit Project</button>
+            <div id="feedback" class="feedback-message"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Timer Functionality
+let timeRemaining = 5400; // 1 hour 30 minutes in seconds
+let timerInterval;
+
+function startTimer() {
+    timerInterval = setInterval(function() {
+        timeRemaining--;
+        let minutes = Math.floor(timeRemaining / 60);
+        let seconds = timeRemaining % 60;
+        if (seconds < 10) seconds = "0" + seconds;
+        document.getElementById("time").textContent = minutes + ":" + seconds;
+
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            alert("Time is up! Please submit your project.");
+            submitProject();
+        }
+    }, 1000);
+}
+
+// Start the timer when the page loads
+window.onload = startTimer;
+
+// Submit Project Functionality
+function submitProject() {
+    let feedbackMessage = document.getElementById("feedback");
+    feedbackMessage.textContent = "Your project has been submitted successfully! We will review it and provide feedback shortly.";
+    clearInterval(timerInterval);
+}
+
+    </script>
+</body>
+</html>
