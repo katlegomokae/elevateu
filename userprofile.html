@@ -161,14 +161,43 @@ footer {
         <a href="register.html">Register</a>
         <a href="portal.html">User Portal</a>
     </div>
+    
+<section class="register-container">
+        <h1>Create Your Account</h1>
+        <form id="registrationForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
 
-    <section class="job-listings-container">
-        <h1>Available Job Listings</h1>
-        <div id="jobListings" class="job-listings"></div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <label for="skills">Skills (comma separated):</label>
+            <input type="text" id="skills" placeholder="e.g., HTML, CSS, JavaScript" required>
+
+            <div class="role-selection">
+                <h3>Select Your Role:</h3>
+                <label>
+                    <input type="radio" name="role" value="freelancer" required>
+                    Freelancer
+                </label>
+                <label>
+                    <input type="radio" name="role" value="employer">
+                    Employer
+                </label>
+                <label>
+                    <input type="radio" name="role" value="mentor">
+                    Mentor
+                </label>
+            </div>
+
+            <button type="submit">Create Account</button>
+        </form>
     </section>
-
     <footer>
-        <p>&copy; 2024 Your Company. All rights reserved.</p>
+        <p>&copy; 2024 KatlegoYaMasa. All rights reserved.</p>
     </footer>
 
     <script>
