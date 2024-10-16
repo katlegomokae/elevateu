@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
-  <style>
-      /* General Styling */
+    <title>Job Listings</title>
+<style>
+     /* General Styling */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -41,16 +41,62 @@ body {
     float: left;
 }
 
-/* Registration Section */
-.registration-container {
-    padding: 40px;
-    text-align: center;
-    background-color: white;
-    max-width: 600px;
-    margin: 50px auto;
+
+/* Registration Form Styles */
+.register-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
 }
+
+.register-container h1 {
+    text-align: center;
+}
+
+.register-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.role-selection {
+    margin: 15px 0;
+}
+
+.role-selection h3 {
+    margin: 0 0 10px;
+}
+
+.role-selection label {
+    display: block;
+    margin: 5px 0;
+}
+
+.register-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-container button:hover {
+    background-color: #0056b3;
+}
+
 
 h1 {
     font-size: 2.2rem;
@@ -106,78 +152,57 @@ footer {
     font-size: 0.9rem;
 }
 
-  </style>
+</style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div class="navbar">
         <a href="index.html" class="logo"><img src="logo.png" alt="Logo"></a>
         <a href="index.html">Home</a>
-        <a href="jobs.html">Jobs</a>
-        <a href="projects.html">Project Demos</a>
-        <a href="profile.html">Profile</a>
-        <a href="about.html">About Us</a>
+        <a href="register.html">Register</a>
+        <a href="portal.html">User Portal</a>
     </div>
 
-    <!-- Registration Form -->
-    <section class="registration-container">
-        <h1>Create Your Account</h1>
-        <form id="registrationForm">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="skills">Skills (comma separated)</label>
-            <input type="text" id="skills" name="skills" required>
-
-            <button type="submit">Create Account</button>
-        </form>
-
-        <!-- Confirmation Message -->
-        <div id="confirmationMessage" class="confirmation-message"></div>
+    <section class="job-listings-container">
+        <h1>Available Job Listings</h1>
+        <div id="jobListings" class="job-listings"></div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Your Company. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Event listener for form submission
-document.getElementById("registrationForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    // Collect form data
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get user input values
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const skills = document.getElementById("skills").value;
+    const skills = document.getElementById("skills").value.split(',').map(skill => skill.trim());
+    const role = document.querySelector('input[name="role"]:checked').value;
 
-    // Create user object
+    // Create a user object
     const user = {
         name: name,
         email: email,
         password: password,
-        skills: skills.split(',').map(skill => skill.trim()) // Convert skills into an array
+        skills: skills,
+        role: role
     };
 
-    // Store user data in localStorage (simulating a database)
+    // Store user data in localStorage
     localStorage.setItem(email, JSON.stringify(user));
 
-    // Confirmation message
-    document.getElementById("confirmationMessage").textContent = `Account created successfully for ${name}!`;
-    document.getElementById("confirmationMessage").style.display = 'block';
-
-    // Clear form
-    document.getElementById("registrationForm").reset();
+    // Redirect to the user portal or login page
+    alert("Account created successfully! Welcome, " + name);
+    window.location.href = "portal.html"; // Change this to the desired redirect page
 });
 
     </script>
 </body>
 </html>
+
+
+
+     
