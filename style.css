@@ -138,6 +138,34 @@ header nav ul li a.cta {
     text-decoration: none;
     font-weight: bold;
 }
+/* Add this to your existing styles.css */
+
+/* Job Listings Section */
+.job-listings-container {
+    padding: 40px;
+    text-align: center;
+}
+
+.job-listings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.job-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+}
+
+.job-card h3 {
+    margin-top: 0;
+}
+
 
 /* Testimonials Section */
 .testimonials {
