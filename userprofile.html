@@ -3,181 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
+    <title>Create Account</title>
+  <style>
+      /* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
-}
-
-.profile-container {
-    width: 70%;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-h1, h2 {
     color: #333;
 }
 
-.profile-form {
-    display: flex;
-    flex-direction: column;
+/* Navigation Bar */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    padding: 20px 10px;
 }
 
-.section {
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar .logo img {
+    width: 150px;
+    float: left;
+}
+
+/* Registration Section */
+.registration-container {
+    padding: 40px;
+    text-align: center;
+    background-color: white;
+    max-width: 600px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.2rem;
     margin-bottom: 20px;
 }
 
-label {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 5px;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-input[type="text"], input[type="email"], textarea {
-    width: 100%;
+label {
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
     padding: 10px;
-    margin: 5px 0 15px;
-    border: 1px solid #ccc;
+    font-size: 1rem;
+    border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-input[type="file"] {
-    margin-top: 10px;
-}
-
-button.submit-btn {
-    padding: 10px 20px;
-    background-color: #28a745;
+button {
+    padding: 12px;
+    font-size: 1.2rem;
     color: white;
+    background-color: #007BFF;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button.submit-btn:hover {
-    background-color: #218838;
+button:hover {
+    background-color: #0056b3;
 }
 
-.job-matching {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #e9ecef;
-    border-radius: 5px;
+/* Confirmation Message */
+.confirmation-message {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: green;
+    display: none;
 }
 
-#jobList {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
 }
 
-</style>
+  </style>
 </head>
 <body>
-    <div class="profile-container">
-        <h1>User Profile</h1>
-
-        <form id="userProfileForm" class="profile-form" enctype="multipart/form-data">
-            <!-- Personal Information -->
-            <div class="section">
-                <h2>Personal Details</h2>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="bio">Bio:</label>
-                <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself"></textarea>
-            </div>
-
-            <!-- Portfolio Upload -->
-            <div class="section">
-                <h2>Portfolio Upload</h2>
-                <label for="portfolio">Upload your portfolio (PDF or Zip):</label>
-                <input type="file" id="portfolio" name="portfolio" accept=".pdf,.zip" required>
-
-                <label for="projects">Demo Projects (Add links to demo projects):</label>
-                <textarea id="projects" name="projects" rows="4" placeholder="e.g., https://github.com/username/project1"></textarea>
-            </div>
-
-            <!-- Achievements -->
-            <div class="section">
-                <h2>Achievements</h2>
-                <label for="achievements">List of Achievements:</label>
-                <textarea id="achievements" name="achievements" rows="3" placeholder="e.g., Completed certification in web development"></textarea>
-            </div>
-
-            <!-- Endorsements -->
-            <div class="section">
-                <h2>Client Testimonials / Endorsements</h2>
-                <label for="endorsements">Testimonials from clients:</label>
-                <textarea id="endorsements" name="endorsements" rows="4" placeholder="Copy-paste testimonials here"></textarea>
-            </div>
-
-            <!-- Skills and AI Matching -->
-            <div class="section">
-                <h2>Your Skills</h2>
-                <label for="skills">Skills (Separate with commas):</label>
-                <input type="text" id="skills" name="skills" placeholder="e.g., HTML, CSS, JavaScript, React">
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="submit-btn">Submit Profile</button>
-        </form>
-
-        <!-- AI Job Matching Section -->
-        <div class="job-matching" id="jobMatching">
-            <h2>Job Matching for You</h2>
-            <div id="jobList"></div>
-        </div>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html" class="logo"><img src="logo.png" alt="Logo"></a>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="projects.html">Project Demos</a>
+        <a href="profile.html">Profile</a>
+        <a href="about.html">About Us</a>
     </div>
 
+    <!-- Registration Form -->
+    <section class="registration-container">
+        <h1>Create Your Account</h1>
+        <form id="registrationForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="skills">Skills (comma separated)</label>
+            <input type="text" id="skills" name="skills" required>
+
+            <button type="submit">Create Account</button>
+        </form>
+
+        <!-- Confirmation Message -->
+        <div id="confirmationMessage" class="confirmation-message"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-      // Simulate AI Job Matching
-const jobList = document.getElementById('jobList');
+        // Event listener for form submission
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    // Collect form data
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const skills = document.getElementById("skills").value;
 
-document.getElementById('userProfileForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+    // Create user object
+    const user = {
+        name: name,
+        email: email,
+        password: password,
+        skills: skills.split(',').map(skill => skill.trim()) // Convert skills into an array
+    };
 
-    // Extracting the user's skills input
-    const skillsInput = document.getElementById('skills').value;
-    const userSkills = skillsInput.split(',').map(skill => skill.trim().toLowerCase());
+    // Store user data in localStorage (simulating a database)
+    localStorage.setItem(email, JSON.stringify(user));
 
-    // Dummy jobs with skills required
-    const jobs = [
-        { title: 'Frontend Developer', skills: ['html', 'css', 'javascript', 'react'] },
-        { title: 'Backend Developer', skills: ['node.js', 'express', 'mongodb'] },
-        { title: 'Full Stack Developer', skills: ['html', 'css', 'javascript', 'node.js'] },
-        { title: 'Mobile App Developer', skills: ['react native', 'ios', 'android'] }
-    ];
+    // Confirmation message
+    document.getElementById("confirmationMessage").textContent = `Account created successfully for ${name}!`;
+    document.getElementById("confirmationMessage").style.display = 'block';
 
-    // Clear the job list before updating
-    jobList.innerHTML = '';
-
-    // Find matching jobs based on skills
-    const matchingJobs = jobs.filter(job =>
-        job.skills.some(skill => userSkills.includes(skill))
-    );
-
-    if (matchingJobs.length === 0) {
-        jobList.innerHTML = '<p>No matching jobs found.</p>';
-    } else {
-        matchingJobs.forEach(job => {
-            const jobElement = document.createElement('p');
-            jobElement.textContent = `Job Title: ${job.title}`;
-            jobList.appendChild(jobElement);
-        });
-    }
+    // Clear form
+    document.getElementById("registrationForm").reset();
 });
 
     </script>
