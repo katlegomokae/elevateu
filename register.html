@@ -169,6 +169,38 @@ footer {
         <p>&copy; 2024 Your Company. All rights reserved.</p>
     </footer>
 
-    <script src="register.js"></script>
+    <script>
+        // Event listener for form submission
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    // Collect form data
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const skills = document.getElementById("skills").value;
+    const portfolio = document.getElementById("portfolio").value;
+
+    // Create user object
+    const user = {
+        name: name,
+        email: email,
+        password: password,
+        skills: skills.split(',').map(skill => skill.trim()), // Convert skills into an array
+        portfolio: portfolio
+    };
+
+    // Store user data in localStorage
+    localStorage.setItem(email, JSON.stringify(user));
+
+    // Confirmation message
+    document.getElementById("confirmationMessage").textContent = `Account created successfully for ${name}!`;
+    document.getElementById("confirmationMessage").style.display = 'block';
+
+    // Clear form
+    document.getElementById("registrationForm").reset();
+});
+
+    </script>
 </body>
 </html>
